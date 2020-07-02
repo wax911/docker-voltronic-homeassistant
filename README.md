@@ -1,5 +1,11 @@
 # A Docker based Home Assistant interface for MPP/Voltronic Solar Inverters 
 
+**Docker Hub:** [`bushrangers/ha-voltronic-mqtt:latest`](https://hub.docker.com/r/bushrangers/ha-voltronic-mqtt/)
+
+![License](https://img.shields.io/github/license/ned-kelly/docker-voltronic-homeassistant.svg) ![Docker Pulls](https://img.shields.io/docker/pulls/bushrangers/ha-voltronic-mqtt.png) ![buildx](https://github.com/ned-kelly/docker-voltronic-homeassistant/workflows/buildx/badge.svg)
+
+----
+
 This project [was derived](https://github.com/manio/skymax-demo) from the 'skymax' [C based monitoring application](https://skyboo.net/2017/03/monitoring-voltronic-power-axpert-mex-inverter-under-linux/) designed to take the monitoring data from Voltronic, Axpert, Mppsolar PIP, Voltacon, Effekta, and other branded OEM Inverters and send it to a [Home Assistant](https://www.home-assistant.io/) MQTT server for ingestion...
 
 The program can also receive commands from Home Assistant (via MQTT) to change the state of the inverter remotely.
@@ -22,14 +28,6 @@ _Example #1: My "Lovelace" dashboard using data collected from the Inverter & th
 ![Example Lovelace Dashboard](images/grafana-example.jpg "Example Grafana Dashboard")
 _Example #2: Grafana summary allowing more detailed analysis of data collected, and the ability to 'deep-dive' historical data._
 
-
-grafana-example.jpg
-
-----
-
-**Docker Hub:** [`bushrangers/ha-voltronic-mqtt`](https://hub.docker.com/r/bushrangers/ha-voltronic-mqtt/)
-
-![License](https://img.shields.io/github/license/ned-kelly/docker-voltronic-homeassistant.svg) ![Docker Pulls](https://img.shields.io/docker/pulls/bushrangers/ha-voltronic-mqtt.png)
 
 ## Prerequisites
 
@@ -64,7 +62,11 @@ docker-compose up -d
 
 ```
 
-_**Note:** builds on docker hub are currently for x64 -- If you have issues standing up the image on your Linux distribution (i.e. Your Raspberry Pi/ARM device) you will need to manually build the image - This can be done by uncommenting the build flag in your docker-compose.yml file._
+_**Note:**_
+
+  - builds on docker hub are currently for `linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386` -- If you have issues standing up the image on your Linux distribution (i.e. An old Pi/ARM device) you may need to manually build the image to support your local device architecture - This can be done by uncommenting the build flag in your docker-compose.yml file.
+  
+  - The default `docker-compose.yml` file includes Watchtower, which can be  configured to auto-update this image when we push new changes to github - Please **uncomment if you wish to auto-update to the latest builds of this project**.
 
 ## Integrating into Home Assistant.
 
